@@ -3,3 +3,5 @@
 .direnv/
 # VS Code
 .vscode/
+# Dotfiles
+dotfiles/
