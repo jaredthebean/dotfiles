@@ -20,5 +20,5 @@ mkdir -p "${HOME}/.vim/plugged"
 ln -fs "${SCRIPT_DIR}/kitty" "${CONFIG_DIR}/kitty"
 
 # ZSH
-ln -fs "${CONFIG_DIR}/zsh/rc" "${HOME}/.zshrc"
-ln -fs "${CONFIG_DIR}/zsh/aliases" "${HOME}/.zsh_aliases"
+ln -fs "${SCRIPT_DIR}/zsh/rc" "${HOME}/.zshrc"
+ln -fs "${SCRIPT_DIR}/zsh/aliases" "${HOME}/.zsh_aliases"
