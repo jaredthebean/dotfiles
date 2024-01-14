@@ -1,0 +1,39 @@
+export ANTIGEN_DEFAULT_REPO_URL='https://github.com/ohmyzsh/ohmyzsh'
+export ANTIGEN_OMZ_REPO_URL=https://github.com/ohmyzsh/ohmyzsh
+source /usr/share/zsh-antigen/antigen.zsh
+source /home/jared/.antigen/bundles/ohmyzsh/ohmyzsh/oh-my-zsh.sh
+antigen init .antigenrc
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export NVM_DIR="${HOME}/.nvm"
+[ -s "${NVM_DIR}/nvm.sh" ] && \. "${NVM_DIR}/nvm.sh" # This loads nvm
+# Rust
+source "${HOME}/.cargo/env"
+# 1Password SSH
+export SSH_AUTH_SOCK=~/.1password/agent.sock
+
+# Path additions
+# Yarn
+export PATH="${HOME}/.yarn/bin:${HOME}/.config/yarn/global/node_modules/.bin:${PATH}"
+# Local Path
+LOCAL_PATH="${HOME}/.local"
+export PATH="${PATH}:${LOCAL_PATH}/go/bin"
+# Things installed by `go install` go here
+export GOPATH="${LOCAL_PATH}/gopath"
+export PATH="${PATH}:${GOPATH}/bin"
+# Android Platform Tools
+export PATH="${PATH}:${LOCAL_PATH}/android/platform-tools"
+# Java Env
+export PATH="${HOME}/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
+
+source ${HOME}/.zsh_aliases
+source ${HOME}/.zsh.keys
+export PAGER="bat --color=always -p"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+# Hatch completions
+source ~/.config/hatch/complete.zsh

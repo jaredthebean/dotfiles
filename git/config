@@ -1,0 +1,29 @@
+[alias]
+	ss = status
+  co = checkout
+  url = config --get remote.origin.url
+[core]
+	editor = vim
+	pager = delta
+[user]
+	name = Jared Bean
+	email = jibean19@gmail.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICBVgRI3BydEezqnM5NREF52ygJyGw9kYcUrtWN4AEGs
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true  # use n and N to move between diff sections
+	light = false    # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+	side-by-side=true
+[merge]
+	conflictstyle = diff3
+[diff]
+	colorMoved = default
+[init]
+	defaultBranch = main
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /opt/1Password/op-ssh-sign
+[commit]
+	gpgsign = true

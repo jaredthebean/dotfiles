@@ -1,0 +1,8 @@
+alias ls="eza -FG --icons"
+alias la="eza -FGa --icons"
+alias ll="eza -1l --no-permissions --no-time --octal-permissions --icons"
+alias lt="eza -FT --icons --color=always | bat -p"
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+alias pyclean="find . -name '__pycache__' -type d -not -path './.direnv/*' -exec rm -r {} \+"
+alias hat='bat -l help'
