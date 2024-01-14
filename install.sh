@@ -14,7 +14,9 @@ ln -fs "${SCRIPT_DIR}/git" "${CONFIG_DIR}/git"
 ln -fs "${SCRIPT_DIR}/vim/rc" "${HOME}/.vimrc"
 mkdir -p "${HOME}/.vim"
 ln -fs "${SCRIPT_DIR}/vim/autoload" "${HOME}/.vim/autoload"
+ln -fs "${SCRIPT_DIR}/vim/rcs" "${HOME}/.vim/rcs"
 mkdir -p "${HOME}/.vim/plugged"
+vim +PlugInstall
 
 # Kitty
 ln -fs "${SCRIPT_DIR}/kitty" "${CONFIG_DIR}/kitty"
