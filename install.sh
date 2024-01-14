@@ -16,7 +16,7 @@ mkdir -p "${HOME}/.vim"
 ln -fs "${SCRIPT_DIR}/vim/autoload" "${HOME}/.vim/autoload"
 ln -fs "${SCRIPT_DIR}/vim/rcs" "${HOME}/.vim/rcs"
 mkdir -p "${HOME}/.vim/plugged"
-vim +PlugInstall
+vim +'PlugInstall --sync' +qa
 
 # Kitty
 ln -fs "${SCRIPT_DIR}/kitty" "${CONFIG_DIR}/kitty"
