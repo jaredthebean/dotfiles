@@ -1,0 +1,7 @@
+# A listing of cargo configuration lines
+# Each configuration line should be of the form
+# <desiredCommand> <supplyingPackages>...
+bat bat
+delta git-delta
+eza eza
+rg ripgrep
