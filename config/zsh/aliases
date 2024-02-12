@@ -1,7 +1,7 @@
-alias ls="eza -FG --icons"
-alias la="eza -FGa --icons"
+alias ls="eza -F -G --icons"
+alias la="eza -F -G -a --icons"
 alias ll="eza -1l --no-permissions --no-time --octal-permissions --icons"
-alias lt="eza -FT --icons --color=always | bat -p"
+alias lt="eza -F -T --icons --color=always | bat -p"
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias pyclean="find . -name '__pycache__' -type d -not -path './.direnv/*' -exec rm -r {} \+"
