@@ -13,10 +13,12 @@ installNodejs() {
 }
 
 installPackagesWithOther() {
-  local commandsToInstall="$*"
+  local wantedCommands="$*"
+  local commandsToInstall=""
+  commandsToInstall=$(unavailableCommands "${wantedCommands}")
   for command in ${commandsToInstall}; do
     case "${command}" in
-      nodejs)
+      node)
         installNodejs
         ;;
       *)

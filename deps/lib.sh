@@ -2,7 +2,7 @@
 
 isInstalled() {
   cmd="$1"
-  command -v "${cmd}"
+  command -v "${cmd}" > /dev/null
 }
 
 contains() {
@@ -15,6 +15,21 @@ contains() {
     fi
   done
   return 1
+}
+
+unavailableCommands() {
+  if [ $# -ne 1 ]; then
+    echo "Usage: unavailableCommands '<space separated list of commands>'" >&2
+    return 1
+  fi
+  local wantedCommands="$1"
+  local unCommands=""
+  for wantedCommand in ${wantedCommands}; do
+    if ! isInstalled "${wantedCommand}"; then
+      unCommands=$(append "${unCommands}" "${wantedCommand}")
+    fi
+  done
+  echo "${unCommands}"
 }
 
 # Reads a config file line by line - ignoring lines that start with "#"

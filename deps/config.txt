@@ -10,4 +10,4 @@ cargo bat
 cargo delta
 cargo eza
 cargo rg
-other nodejs
+other node

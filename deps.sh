@@ -29,7 +29,7 @@ done << EOF
 $(readDepsConfig "${REPO_ROOT}/deps/config.txt")
 EOF
 
-if ! isInstalled kitty > /dev/null; then
+if ! isInstalled kitty; then
   if ! kitty list-fonts | grep "Fira Code" > /dev/null; then
     echo "Need to install 'Fira Code' font" >&2
   else
