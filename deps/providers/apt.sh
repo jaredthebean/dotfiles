@@ -12,11 +12,13 @@ aptAvailable() {
 }
 
 installCommandsWithApt() {
-  local commandsToInstall="$*"
+  local wantedCommands="$*"
   if ! aptAvailable; then
     echo "apt not available as package manager." >&2
     return 1
   fi
+  local commandsToInstall=""
+  commandsToInstall=$(unavailableCommands "${wantedCommands}")
   local config
   config=$(readConfigLines "${REPO_ROOT}/deps/providers/apt.config.txt")
   local packagesToInstall

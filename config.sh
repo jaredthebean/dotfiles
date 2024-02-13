@@ -3,9 +3,9 @@ if [ $# -lt 1 ]; then
   echo "Usage: $0 <REPO_ROOT>" >&2
   exit 1
 fi
+readonly REPO_ROOT="$1"
 shift
 
-readonly REPO_ROOT="$1"
 readonly REPO_CONFIG_DIR="${REPO_ROOT}/config"
 readonly CONFIG_DIR="${HOME}/.config"
 
@@ -27,3 +27,4 @@ ln -fs "${REPO_CONFIG_DIR}/kitty" "${CONFIG_DIR}/kitty"
 # ZSH
 ln -fs "${REPO_CONFIG_DIR}/zsh/rc" "${HOME}/.zshrc"
 ln -fs "${REPO_CONFIG_DIR}/zsh/aliases" "${HOME}/.zsh_aliases"
+chsh -s "$(which zsh)" "$(whoami)"

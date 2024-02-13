@@ -19,10 +19,12 @@ installRustWithCargo() {
 }
 
 installCommandsWithCargo() {
-  local commandsToInstall="$*"
+  local wantedCommands="$*"
   if ! cargoAvailable; then
     installRustWithCargo
   fi
+  local commandsToInstall=""
+  commandsToInstall=$(unavailableCommands "${wantedCommands}")
   local config
   config=$(readConfigLines "${REPO_ROOT}/deps/providers/cargo.config.txt")
   local packagesToInstall
