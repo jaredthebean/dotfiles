@@ -32,9 +32,9 @@ installCommandsWithApt() {
 
 installAptPackages() {
   local packagesToInstall="$*"
-  apt-get update
+  maybeWithSudo apt-get update
   # shellcheck disable=SC2086
-  DEBIAN_FRONTEND=noninteractive apt-get -y install ${packagesToInstall} build-essential
+  DEBIAN_FRONTEND=noninteractive maybeWithSudo apt-get -y install ${packagesToInstall} build-essential
 }
 
 # shellcheck disable=SC2068

@@ -123,3 +123,17 @@ EOF
   fi
   echo "${packageNames}"
 }
+
+needsSudo() {
+  ! [ "$(id -u)" -eq 0 ]
+}
+
+maybeWithSudo() {
+  if needsSudo; then
+    # shellcheck disable=SC2068
+    sudo $@
+  else
+    # shellcheck disable=SC2068
+    $@
+  fi
+}
