@@ -5,6 +5,7 @@ if [ $# -lt 1 ]; then
 fi
 readonly REPO_ROOT="$1"
 shift
+. "${REPO_ROOT}/deps/lib.sh"
 
 readonly REPO_CONFIG_DIR="${REPO_ROOT}/config"
 readonly CONFIG_DIR="${HOME}/.config"
@@ -27,4 +28,13 @@ ln -fs "${REPO_CONFIG_DIR}/kitty" "${CONFIG_DIR}/kitty"
 # ZSH
 ln -fs "${REPO_CONFIG_DIR}/zsh/rc" "${HOME}/.zshrc"
 ln -fs "${REPO_CONFIG_DIR}/zsh/aliases" "${HOME}/.zsh_aliases"
-chsh -s "$(which zsh)" "$(whoami)"
+
+if ! chsh -s "$(which zsh)" "$(whoami)"; then
+  echo "Trying to fix chsh PAM permissions on Ubuntu"
+  maybeWithSudo sed -i 's/required/sufficient/' '/etc/pam.d/chsh'
+  if ! chsh -s "$(which zsh)" "$(whoami)"; then
+    echo "Didn't work: staying with default shell instead of zsh"
+  else
+    echo "Successfully set default shell to zsh"
+  fi
+fi
