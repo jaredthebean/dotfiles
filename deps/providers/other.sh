@@ -8,7 +8,7 @@ readonly REPO_ROOT="$1"
 shift
 
 installNodejs() {
-  curl -fsSL https://deb.nodesource.com/setup_20.x | maybeWithSudo bash -
+  curl -fsSL https://deb.nodesource.com/setup_22.x | maybeWithSudo bash -
   DEBIAN_FRONTEND=noninteractive maybeWithSudo apt-get install -y nodejs
 }
 
