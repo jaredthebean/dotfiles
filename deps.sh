@@ -1,10 +1,28 @@
 #! /usr/bin/env sh
-if [ $# -ne 1 ]; then
-  echo "Usage: $0 <REPO_ROOT>" >&2
+if [ $# -eq 0 ]; then
+  echo "Usage: $0 <REPO_ROOT> [CONFIG_FILE]" >&2
   exit 1
 fi
 readonly REPO_ROOT="$1"
-. "${REPO_ROOT}/deps/lib.sh"
+readonly DEPS_ROOT="${REPO_ROOT}/deps"
+# shellcheck disable=SC1091
+. "${DEPS_ROOT}/lib.sh"
+readonly CONFIGS
+# We want word splitting in the 'ls ...' so basename lops off the '.txt' of
+# each word/filename
+# shellcheck disable=SC2046
+CONFIGS=$(basename -s .txt $(ls "${DEPS_ROOT}/"*.txt) | tr '\n' ' ')
+if [ $# -eq 2 ]; then
+  if ! contains "$2" "${CONFIGS}"; then
+    echo "Usage: $0 <REPO_ROOT> [CONFIG_FILE]" >&2
+    echo "Available configs: "
+    echo "${CONFIGS}"
+    exit 1
+  fi
+  readonly CONFIG_FILE="$2"
+else
+  readonly CONFIG_FILE="${REPO_ROOT}/deps/config.txt"
+fi
 
 echo "Reading configuration"
 while read -r provider commands; do
@@ -26,7 +44,7 @@ while read -r provider commands; do
       ;;
   esac
 done << EOF
-$(readDepsConfig "${REPO_ROOT}/deps/config.txt")
+$(readDepsConfig "${CONFIG_FILE}")
 EOF
 
 if isInstalled kitty; then

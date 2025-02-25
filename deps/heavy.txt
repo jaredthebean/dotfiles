@@ -1,0 +1,7 @@
+# Each configuration line should be of the form
+# <providerName> <commandName>
+# Additional deps that are heavier
+cargo bat
+cargo delta
+cargo eza
+cargo rg
