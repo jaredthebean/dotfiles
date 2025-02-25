@@ -19,9 +19,9 @@ if [ $# -eq 2 ]; then
     echo "${CONFIGS}"
     exit 1
   fi
-  readonly CONFIG_FILE="$2"
+  readonly CONFIG_FILE="${DEPS_ROOT}/$2.txt"
 else
-  readonly CONFIG_FILE="${REPO_ROOT}/deps/config.txt"
+  readonly CONFIG_FILE="${DEPS_ROOT}/config.txt"
 fi
 
 echo "Reading configuration"
@@ -30,17 +30,17 @@ while read -r provider commands; do
     apt)
       echo "Installing apt commands '${commands}'"
       # shellcheck disable=SC2086
-      "${REPO_ROOT}/deps/providers/apt.sh" "${REPO_ROOT}" ${commands}
+      "${DEPS_ROOT}/providers/apt.sh" "${REPO_ROOT}" ${commands}
       ;;
     cargo)
       echo "Installing cargo commands '${commands}'"
       # shellcheck disable=SC2086
-      "${REPO_ROOT}/deps/providers/cargo.sh" "${REPO_ROOT}" ${commands}
+      "${DEPS_ROOT}/providers/cargo.sh" "${REPO_ROOT}" ${commands}
       ;;
     other)
       echo "Installing other commands '${commands}'"
       # shellcheck disable=SC2086
-      "${REPO_ROOT}/deps/providers/other.sh" "${REPO_ROOT}" ${commands}
+      "${DEPS_ROOT}/providers/other.sh" "${REPO_ROOT}" ${commands}
       ;;
   esac
 done << EOF
