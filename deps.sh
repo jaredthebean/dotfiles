@@ -7,11 +7,11 @@ readonly REPO_ROOT="$1"
 readonly DEPS_ROOT="${REPO_ROOT}/deps"
 # shellcheck disable=SC1091
 . "${DEPS_ROOT}/lib.sh"
-readonly CONFIGS
 # We want word splitting in the 'ls ...' so basename lops off the '.txt' of
 # each word/filename
 # shellcheck disable=SC2046
 CONFIGS=$(basename -s .txt $(ls "${DEPS_ROOT}/"*.txt) | tr '\n' ' ')
+readonly CONFIGS
 if [ $# -eq 2 ]; then
   if ! contains "$2" "${CONFIGS}"; then
     echo "Usage: $0 <REPO_ROOT> [CONFIG_FILE]" >&2
