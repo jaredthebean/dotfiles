@@ -1,7 +1,6 @@
 # A listing of apt configuration lines
 # Each configuration line should be of the form
 # <desiredCommand> <supplyingPackages>...
-ctags universal-ctags
 curl curl
 git git
 ssh ssh
