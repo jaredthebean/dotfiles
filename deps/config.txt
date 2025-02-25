@@ -1,6 +1,5 @@
 # Each configuration line should be of the form
 # <providerName> <commandName>
-apt ctags
 apt curl
 apt git
 apt ssh

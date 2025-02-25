@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#! /usr/bin/env sh
 if [ $# -lt 1 ]; then
   echo "Usage: $0 <REPO_ROOT>" >&2
   exit 1

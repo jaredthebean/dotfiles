@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#! /usr/bin/env sh
 
 # Note this just sets up the configuration files.  Installing the deps is up to you
 

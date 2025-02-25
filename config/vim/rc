@@ -19,13 +19,6 @@ nnoremap <leader>t :Tags<CR>
 "Colorscheme (
 colorscheme solarized
 
-"Gutentag
-source ~/.vim/rcs/gutentag.rc
-
-"Tagbar
-autocmd VimEnter * nested :call tagbar#autoopen(1)
-autocmd TabNew * nested :call tagbar#autoopen(1)
-
 "COC
 source ~/.vim/rcs/coc.rc
 
