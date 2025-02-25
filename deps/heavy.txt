@@ -1,8 +1,7 @@
 # Each configuration line should be of the form
 # <providerName> <commandName>
-apt curl
-apt git
-apt ssh
-apt vim
-apt zsh
-other node
+# Additional deps that are heavier
+cargo bat
+cargo delta
+cargo eza
+cargo rg
