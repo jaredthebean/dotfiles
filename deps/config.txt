@@ -5,8 +5,4 @@ apt git
 apt ssh
 apt vim
 apt zsh
-cargo bat
-cargo delta
-cargo eza
-cargo rg
 other node
