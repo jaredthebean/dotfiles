@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#! /usr/bin/env sh
 if [ $# -ne 1 ]; then
   echo "Usage: $0 <REPO_ROOT>" >&2
   exit 1
@@ -29,7 +29,7 @@ done << EOF
 $(readDepsConfig "${REPO_ROOT}/deps/config.txt")
 EOF
 
-if ! isInstalled kitty; then
+if isInstalled kitty; then
   if ! kitty list-fonts | grep "Fira Code" > /dev/null; then
     echo "Need to install 'Fira Code' font" >&2
   else
