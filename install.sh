@@ -6,7 +6,7 @@ readonly REPO_ROOT
 
 # Should we force an install even if the installed version
 # is detected to be the same as the current repo version
-[ $# -eq 2 ] && { [ "$2" = '-f' ] || [ "$2" = '--force' ]; }
+[ $# -eq 1 ] && { [ "$1" = '-f' ] || [ "$1" = '--force' ]; }
 FORCE=$?
 readonly FORCE
 
