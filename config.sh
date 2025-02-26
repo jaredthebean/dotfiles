@@ -20,7 +20,7 @@ mkdir -p "${HOME}/.vim"
 ln -fs "${REPO_CONFIG_DIR}/vim/autoload" "${HOME}/.vim/autoload"
 ln -fs "${REPO_CONFIG_DIR}/vim/rcs" "${HOME}/.vim/rcs"
 mkdir -p "${HOME}/.vim/plugged"
-vim -u "${HOME}/.vim/rcs/plug.rc" +'PlugInstall --sync' +qa
+vim -es -u "${HOME}/.vim/rcs/plug.rc" -i NONE -c 'PlugUpdate --sync' -c 'qa'
 
 # Kitty
 ln -fs "${REPO_CONFIG_DIR}/kitty" "${CONFIG_DIR}/kitty"
