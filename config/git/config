@@ -9,6 +9,7 @@
 	name = Jared Bean
 	email = jibean19@gmail.com
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICBVgRI3BydEezqnM5NREF52ygJyGw9kYcUrtWN4AEGs
+# TODO: Make this only applicable after installing "heavy" cargo dependencies
 [interactive]
 	diffFilter = delta --color-only
 [delta]
