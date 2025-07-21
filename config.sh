@@ -29,10 +29,12 @@ ln -fs "${REPO_CONFIG_DIR}/kitty" "${CONFIG_DIR}/kitty"
 ln -fs "${REPO_CONFIG_DIR}/zsh/rc" "${HOME}/.zshrc"
 ln -fs "${REPO_CONFIG_DIR}/zsh/aliases" "${HOME}/.zsh_aliases"
 
-if ! chsh -s "$(which zsh)" "$(whoami)"; then
+# Run chsh with closed stdin since it sometimes tries to run interactively and
+# has no option to turn that off.
+if ! chsh -s "$(which zsh)" "$(whoami)" <&-; then
   echo "Trying to fix chsh PAM permissions on Ubuntu"
   maybeWithSudo sed -i 's/required/sufficient/' '/etc/pam.d/chsh'
-  if ! chsh -s "$(which zsh)" "$(whoami)"; then
+  if ! chsh -s "$(which zsh)" "$(whoami)" <&-; then
     echo "Didn't work: staying with default shell instead of zsh"
   else
     echo "Successfully set default shell to zsh"
