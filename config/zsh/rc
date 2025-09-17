@@ -2,17 +2,49 @@
 if [ -f "${HOME}/.cargo/env" ]; then
   source "${HOME}/.cargo/env"
 fi
-# 1Password SSH
-export SSH_AUTH_SOCK=~/.1password/agent.sock
 
 # Path additions
 # Local Path
 LOCAL_PATH="${HOME}/.local"
-export PATH="${PATH}:${GOPATH}/bin"
+export GOPATH="${LOCAL_PATH}/gopath";
+export PATH="${PATH}:${GOPATH}/bin";
 
-source ${HOME}/.zsh_aliases
+source "${HOME}/.zsh_aliases"
 if [ -f "${HOME}/.zsh.keys" ]; then
-  source ${HOME}/.zsh.keys
+  source "${HOME}/.zsh.keys"
 fi
-export PAGER="bat --color=always -p"
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+# Use bat for paging if available
+if command -v > /dev/null; then
+  export PAGER="bat --color=always -p"
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+fi
+
+# Prompts
+# Dev container prompt
+if [ -f '/.dockerenv' ]; then
+  autoload -U promptinit && promptinit
+  setopt PROMPT_SUBST
+
+  psworkspacename() {
+    local d
+    d=$(pwd)
+    if [ "${d#/workspaces/}"  != "${d}" ]; then
+      printf '%s' "$(echo "${d}" | cut -d'/' -f3)"
+    fi
+  }
+
+  psdirpath() {
+    local d
+    d=$(pwd)
+    if [ "${d#/workspaces/}"  != "${d}" ]; then
+      printf '%s' "$(echo "${d}" | cut -d'/' -f4-)"
+    fi
+  }
+
+  export PROMPT='%F{green}%n%f|%F{blue}$(psworkspacename)%f/%F{cyan}$(psdirpath)%f> '
+  export RPROMPT="%(?.%?.%B%F{red}%?%f%b)"
+else # Not in docker/dev-container
+  # 1Password SSH - only in non dev-containers
+  export SSH_AUTH_SOCK=~/.1password/agent.sock
+fi
