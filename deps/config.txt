@@ -6,3 +6,4 @@ apt ssh
 apt vim
 apt zsh
 other node
+other template

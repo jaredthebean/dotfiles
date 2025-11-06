@@ -12,6 +12,12 @@ installNodejs() {
   DEBIAN_FRONTEND=noninteractive maybeWithSudo apt-get install -y nodejs
 }
 
+installTemplateCommand() {
+  mkdir -p "${HOME}/.local/bin"
+  curl -fsSL 'https://raw.githubusercontent.com/jaredthebean/templates/refs/heads/main/command.sh' > "${HOME}/.local/bin/template"
+  chmod +x "${HOME}/.local/bin/template"
+}
+
 installPackagesWithOther() {
   local wantedCommands="$*"
   local commandsToInstall=""
@@ -20,6 +26,9 @@ installPackagesWithOther() {
     case "${command}" in
       node)
         installNodejs
+        ;;
+      template)
+        installTemplateCommand
         ;;
       *)
         echo "No known installer for command '${command}'" >&2

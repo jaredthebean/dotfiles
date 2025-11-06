@@ -8,6 +8,7 @@ fi
 LOCAL_PATH="${HOME}/.local"
 export GOPATH="${LOCAL_PATH}/gopath";
 export PATH="${PATH}:${GOPATH}/bin";
+export PATH="${PATH}:${LOCAL_PATH}/bin"
 
 source "${HOME}/.zsh_aliases"
 if [ -f "${HOME}/.zsh.keys" ]; then
